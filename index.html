@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <title>FSB Navigation</title>
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="406webapp" />
+    <!-- Font Awesome CSS -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" media="screen" />
+    <!-- Magnific css -->
+    <link href="assets/css/magnific-popup.css" rel="stylesheet" />
+    <!-- Custom styles CSS -->
+    <link href="assets/css/style.css" rel="stylesheet" media="screen" />
+    <!-- Responsive CSS -->
+    <link href="assets/css/responsive.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="assets/js/printRoute.js"></script>
+    <style>
+    /* Remove the navbar&amp;#39;s default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 1400px;}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to &amp;#39;auto&amp;#39; for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  
+</style>
+  </head>
+  <body>
+    <!--navbar-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Logo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="#">Home</a>
+            </li>
+            <li>
+              <a href="#">About</a>
+            </li>
+            <li>
+              <a href="#">Projects</a>
+            </li>
+            <li>
+              <a href="#">Contact</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--end navbar-->
+    <br />
+    <!--left section-->
+    <div class="container-fluid text-center">
+      <div class="row content">
+        <div class="col-sm-2 sidenav">
+          <!--stair/elevator radio-->
+          <div class="btn-group" data-toggle="buttons">
+          <h3>Stairs or Elevator?</h3>
+          <label class="btn btn-default active form-check-label">
+          <input class="form-check-input" type="radio" autocomplete="off" /> Stairs</label> 
+          <label class="btn btn-default form-check-label">
+          <input class="form-check-input" type="radio" autocomplete="off" /> Elevator</label></div>
+          <!--end radio-->
+        </div>
+        <!--end left section-->
+        <div class="col-sm-8 text-center">
+          <!--form-->
+          <form>Starting Location:
+          <br />
+          <select name="start" id="start">
+            <option value="Taylor">Taylor Auditorium (Floor 1)</option>
+            <option value="Taylor2">Taylor Auditorium (Floor 2)</option>
+            <option value="Front" selected="selected">Front Door</option>
+            <option value="Side">Side Door</option>
+          </select>
+          <br />Ending Location:
+          <br />
+          <select name="end" id="end">
+            <option value="Taylor" selected="selected">Taylor Auditorium (Floor 1)</option>
+            <option value="Taylor2">Taylor Auditorium (Floor 2)</option>
+            <option value="Dividends">Dividends</option>
+            <option value="Front">Front Door</option>
+            <option value="Side">Side Door</option>
+          </select>
+          <br />
+          <select name="stairs" id="access">
+            <option value="stairs">Stairs</option>
+            <option value="elevator">Elevator</option>
+          </select>
+          <br />
+          <input type="submit" value="Submit" onclick='getRoute(); return false;' /></form>
+          <!--form-->
+          <br />
+          <!--search by room-->
+          <form class="form-inline" action="">
+            <div class="form-group">
+            <label for="search">Search By Room:</label> 
+            <input type="text" class="form-control" id="search" placeholder="Enter room number..." name="search" /></div>
+          </form>
+          <!--end search bar-->
+          <br />
+          <br />
+          <!--map-->
+          <div>
+            <!--floor 1-->
+            <img id="floor1" src="assets/images/fsb1.png" style="height:auto; width:60%;" />
+          </div>
+          <!--<div>
+            floor 2
+            <img id="floor2" src="assets/images/fsb2.png" style="height:auto; width:80%;" />
+          </div> -->
+          <!--end map-->
+          <br />
+          <br />
+        </div>
+        <!--end main section-->
+        <!--right section-->
+        <div class="col-sm-2 sidenav">
+          <h2>Entering from the Side Door?</h2>
+          <div class="well">
+            <p>Take me to Taylor Auditorium!</p>
+            <button onclick="document.getElementById(&#39;floor1&#39;).src=&#39;assets/images/side_taylor.png&#39;">Go!</button>
+          </div>
+          <div class="well">
+            <button onclick="document.getElementById(&#39;floor1&#39;).src=&#39;assets/images/fsb2.png&#39;">floor2</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end right section-->
+    <footer class="container-fluid text-center">
+      <p>Footer Text</p>
+    </footer>
+  </body>
+</html>
