@@ -60,45 +60,45 @@
   </head>
   <body>
     <!--navbar-->
-    <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #c3142d;">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-          
-                <a href="#" class="navbar-brand" style="font-weight:bold;"> 
-            <img src="assets/images/image.png" style="height:auto; width:24px ;"></a>
-            </div>
-            <!-- Collection of nav links and other content for toggling -->
-            <div id="navbarCollapse" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav" style="color:white;">
-            <li style="font-weight:bold;"><a href="#"><i class="fa fa-address-book"></i> Mymiami</a></li>
-            <li style="font-weight:bold;"><a href="#"><img src="#" style="height:auto; width:16px;"> FSB Homepage</a></li>
-            <li style="font-weight:bold;"><a href="#">	<img src="#" style="height:auto; width:16px;"> Log In:</a></li>
-                </ul>
-            </div>
+    <nav class="navbar" style="background-color:#c3142d;">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar" style="background-color:#fff;"></span>
+              <span class="icon-bar" style="background-color:#fff;"></span>
+              <span class="icon-bar" style="background-color:#fff;"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="assets/images/image.png" style="height: auto; width:32px;"></a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="https://www.miamioh.edu/" target="_blank">Miami Homepage</a></li>
+              <li><a href="https://miamioh.edu/fsb/" target="_blank">FSB Homepage</a></li>
+              <li><a href="https://bannerweb.miamioh.edu/" target="_blank">BannerWeb</a></li> 
+              <li><a href="https://mymiami.miamioh.edu/" target="_blank">MyMiami</a></li> 
+            </ul>
+            <!--
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+          -->
+          </div>
         </div>
-    </nav>
-    <br/>
+      </nav>
     <!--end navbar-->
-    <br />
     <!--left section-->
     <div class="container-fluid text-center">
       <div class="row content">
         <div class="col-sm-2 sidenav">
-            <form><h5>Starting Location:</h5>
+            <form><h5> Starting Location: <i class="fa fa-map-marker" style="font-size:16px;color:green;"></i></h5>
               <select name="start" id="start">
                 <option value="Taylor">Taylor Auditorium (Floor 1)</option>
                 <option value="Taylor2">Taylor Auditorium (Floor 2)</option>
                 <option value="Front" selected="selected">Front Door</option>
                 <option value="Side">Side Door</option>
               </select>
-              <h5>Ending Location:</h5>
+              <h5>Ending Location: <i class="fa fa-map-marker" style="font-size:16px;color:#c3142d;"></i></h5>
               <select name="end" id="end">
                 <option value="Taylor" selected="selected">Taylor Auditorium (Floor 1)</option>
                 <option value="Taylor2">Taylor Auditorium (Floor 2)</option>
@@ -106,13 +106,12 @@
                 <option value="Front">Front Door</option>
                 <option value="Side">Side Door</option>
               </select>
-              <br />
+              <h5> Accessibility : <i class="fa fa-wheelchair" style="font-size:16px;"></i></h5>
               <select name="stairs" id="access">
                 <option value="stairs">Stairs</option>
                 <option value="elevator">Elevator</option>
               </select>
-              <br />
-              <input type="submit" value="Submit" onclick='getRoute(); return false;' /></form>
+              <br/><input type="submit" value="   Go!   " onclick='getRoute(); return false;' /></form>
         </div>
         <!--end left section-->
         <!-- main section-->
@@ -136,7 +135,7 @@
           <!--map-->
           <div>
             <!--floor 1-->
-            <img id="floor1" src="assets/images/fsb1.png" style="height:auto; width:100%;" />
+            <img id="floor1" src="assets/images/fsb1.png" style="height:auto; width:85%;" />
           </div>
           <!--<div>
             floor 2
@@ -149,7 +148,15 @@
         <!--end main section-->
         <!--right section-->
         <div class="col-sm-2 sidenav">
-            <h4> Thank you for visiting The Farmer School of Business!</h4> 
+          <div id="login">
+            <h5> Log In to Miami BannerWeb: </h5>
+            <form>
+              Username:<br>
+              <input type="text" name="username" placeholder="Username"><br>
+              User Password:<br>
+              <input type="password" name="psw" placeholder="Password"><br><br>
+              <input type="submit" name="submit" value="  Log In  "/>
+              </form>
             <br/> 
         </div>
           <!--end right section-->
