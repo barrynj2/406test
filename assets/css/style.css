@@ -19,7 +19,7 @@ body, html{
 /* Link style
 ---------------------------------------------------------*/
 a {
-    color: #68c3a3;
+    color: #ffffff;
 }
 a,
 a > * {
@@ -132,7 +132,7 @@ h6 {
 }
 
 .form-control:focus {
-    border-color: #68c3a3;
+    border-color: #fff;
     box-shadow: none;
 }
 
@@ -177,7 +177,7 @@ h6 {
 
 /*btn-primary*/
 .btn-primary{
-    background-color:#68c3a3;
+    background-color:#fff;
     border-color: rgba(51, 51, 51, 0.15);
 }
 
@@ -188,13 +188,13 @@ h6 {
 .btn-primary.active, 
 .open>.dropdown-toggle.btn-primary {
     color: #fff;
-    background-color: #41bbf4;
-    border-color: #4eb28f;
+    background-color: #fff;
+    border-color: #fff;
 }
 
 /*btn-info*/
 .btn-info{
-    background-color:#52b3d9;
+    background-color:#fff;
     border-color: rgba(51, 51, 51, 0.15);
 }
 
@@ -266,7 +266,7 @@ ul.list-check li{
 ul.list-check li::before {
     content: "\f00c";
     font-family: fontawesome;
-    color: #41bbf4;
+    color: #ffffff;
     margin-right: 10px;
 }
 
@@ -284,7 +284,7 @@ ul.list-check li::before {
     text-align: center;
     font-size: 50px;
     line-height: 50px;
-    color: #41bbf4;
+    color: #ffffff;
     position: relative;
 }
 /*
@@ -351,11 +351,11 @@ ul.list-check li::before {
 	color: #ffffff;
 }
 .intro h1 span{
-	color: #41bbf4;
+	color: #ffffff;
 }
 
 .intro span{
-	color: #41bbf4;
+	color: #ffffff;
 }
 
 .intro p{
@@ -518,7 +518,7 @@ SOCIAL ICON
 .navbar-custom .navbar-nav > li.active > a {
     background: none;
     outline: 0;
-    color: #68c3a3;
+    color: #ffffff;
 }
 
 .navbar-custom .navbar-brand {
@@ -1077,7 +1077,7 @@ Resume Timeline
 
 
 #filter li a {
-    color: #41bbf4;
+    color: #ffffff;
     display: block;
     text-transform: uppercase;
     padding: 0 15px;
@@ -1087,7 +1087,7 @@ Resume Timeline
 #filter li a.active,
 #filter li a:hover {
     position: relative;
-    background: #41bbf4;
+    background: #ffffff;
     color: #fff;
     border-bottom: 3px solid rgba(0, 0, 0, 0.15);
 }
@@ -1144,7 +1144,7 @@ Resume Timeline
 
 .links a i{
     position: relative;
-    color: #41bbf4;
+    color: #ffffff;
     font-size: 16px;
     margin: 0 13px;
     z-index: 100;
@@ -1159,7 +1159,7 @@ Resume Timeline
     top: -7px;
     width: 30px;
     height: 30px;
-    border: 1px solid #41bbf4;
+    border: 1px solid #ffffff;
     z-index: -1;
     border-radius: 3px;
     -webkit-transform: rotate(45deg);
@@ -1169,14 +1169,14 @@ Resume Timeline
             transform: rotate(45deg);
 }
 .links a:hover i::after {
-    background-color: #41bbf4;
+    background-color: #ffffff;
 }
 
 .portfolio-info {
     position: absolute;
     bottom: -100%;
     left: 0;
-    background-color: #41bbf4;
+    background-color: #ffffff;
     color: #fff;
     height: 45px;
     width: 100%;
@@ -1282,7 +1282,7 @@ Resume Timeline
     top: -10px;
     width: 40px;
     height: 40px;
-    background-color: #68c3a3;
+    background-color: #fff;
     z-index: -1;
     border-radius: 3px;
     -webkit-transform: rotate(45deg);
@@ -1332,7 +1332,7 @@ Resume Timeline
     color: #282828;
 }
 .entry-title a:hover{
-    color: #68c3a3;
+    color: #fff;
 }
 .entry-meta {
     color: #afafaf;
@@ -1349,7 +1349,7 @@ Resume Timeline
     font-weight: 400;
 }
 .entry-meta ul li a:hover{
-    color: #68c3a3;
+    color: #fff;
 }
 
 .blog-more {
@@ -1479,7 +1479,7 @@ Icon for all respective meta
 }
 
 .scroll-up a {
-	background-color: #68c3a3;
+	background-color: #fff;
 	display: block;
 	width: 28px;
 	height: 28px;
@@ -1739,7 +1739,7 @@ Icon for all respective meta
 }
 
 .personal-info h1 span{
-    color:#68c3a3;
+    color:#fff;
 }
 .personal-info p {
     margin-bottom: 40px;
