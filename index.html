@@ -20,9 +20,16 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8" />
+    <!--jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--bootstrap-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- print route script-->
     <script src="assets/js/printRoute.js"></script>
+    <!--log in script-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!--css-->
     <style>
     /* Remove the navbar&amp;#39;s default margin-bottom and rounded borders */ 
     .navbar {
@@ -91,14 +98,15 @@
     <div class="container-fluid text-center">
       <div class="row content">
         <div class="col-sm-2 sidenav">
-            <form><h5> Starting Location: <i class="fa fa-map-marker" style="font-size:16px;color:green;"></i></h5>
+          <h5> Directions: </h5>
+            <form><p> Starting Location: <i class="fa fa-map-marker" style="font-size:16px;color:green;"></i></p>
               <select name="start" id="start">
                 <option value="Taylor">Taylor Auditorium (Floor 1)</option>
                 <option value="Taylor2">Taylor Auditorium (Floor 2)</option>
                 <option value="Front" selected="selected">Front Door</option>
                 <option value="Side">Side Door</option>
               </select>
-              <h5>Ending Location: <i class="fa fa-map-marker" style="font-size:16px;color:#c3142d;"></i></h5>
+              <p>Ending Location: <i class="fa fa-map-marker" style="font-size:16px;color:#c3142d;"></i></p>
               <select name="end" id="end">
                 <option value="Taylor" selected="selected">Taylor Auditorium (Floor 1)</option>
                 <option value="Taylor2">Taylor Auditorium (Floor 2)</option>
@@ -106,11 +114,11 @@
                 <option value="Front">Front Door</option>
                 <option value="Side">Side Door</option>
               </select>
-              <h5> Accessibility : <i class="fa fa-wheelchair" style="font-size:16px;"></i></h5>
+              <p> Accessibility : <i class="fa fa-wheelchair" style="font-size:16px;"></i></p>
               <select name="stairs" id="access">
                 <option value="stairs">Stairs</option>
                 <option value="elevator">Elevator</option>
-              </select>
+              </select><br/>
               <br/><input type="submit" value="   Go!   " onclick='getRoute(); return false;' /></form>
         </div>
         <!--end left section-->
@@ -133,14 +141,17 @@
           <!--end search bar-->
 
           <!--map-->
+          <!--button to switch floors-->
           <div>
-            <!--floor 1-->
-            <img id="floor1" src="assets/images/fsb1.png" style="height:auto; width:85%;" />
+          
+          <img id="myImage" src="assets/images/fsb1.png" style="height:auto; width:90%;"><br/>
+          <br/>
+          <button class="btn btn-danger btn-xs" onclick="document.getElementById('myImage').src='assets/images/fsb1.png'">Floor 1</button>
+          <button class ="btn btn-danger btn-xs" onclick="document.getElementById('myImage').src='assets/images/fsb2.png'">Floor 2</button>
           </div>
-          <!--<div>
-            floor 2
-            <img id="floor2" src="assets/images/fsb2.png" style="height:auto; width:80%;" />
-          </div> -->
+
+
+ 
           <!--end map-->
           <br />
           <br />
@@ -149,14 +160,17 @@
         <!--right section-->
         <div class="col-sm-2 sidenav">
           <div id="login">
-            <h5> Log In to Miami BannerWeb: </h5>
-            <form>
-              Username:<br>
-              <input type="text" name="username" placeholder="Username"><br>
-              User Password:<br>
-              <input type="password" name="psw" placeholder="Password"><br><br>
-              <input type="submit" name="submit" value="  Log In  "/>
-              </form>
+            <h5> Log In to BannerWeb to View Courses: </h5> <br/>
+            <p>
+              Username: <input id="username"></input>
+          </p>
+          <p>
+            Password: <input id="password" type="password"></input>
+          </p>
+          <button id="getTermCode">Login</button>
+          <p id="myClasses">
+              Login to see courses!
+          </p>
             <br/> 
         </div>
           <!--end right section-->
@@ -164,7 +178,110 @@
     </div>
   
     <footer class="container-fluid text-center">
-      <p>Footer Text</p>
+      <p>Developed by ISA students &copy;	2018 for support of the Farmer School of </p>
     </footer>
   </body>
+  <script type="text/javascript">
+    var termCode;
+    var token;
+    var courses;
+    var rooms;
+    var validLogin;
+    $("#getTermCode").click(function () {
+        //clear/initialize all vars
+        termCode = "";
+        token = "";
+        courses = [];
+        rooms = [];
+        validLogin = true;
+        //jQuery for term code
+        document.getElementById("username").value
+        $.ajax({
+            type: "GET",
+            url: "http://ws.miamioh.edu/academicTerms/current?applicationname=FSBProject",
+            dataType: "xml",
+            success: tcParser,
+            async: false
+        });
+        //jQuery for token (requires valid username and password)
+        $.ajax({
+            type: "POST",
+            url: "https://ws.miamioh.edu/authentication",
+            data: "type=usernamePassword&application=FSBMobileAppDownload&" + jQuery.param({ username: document.getElementById("username").value, password: document.getElementById("password").value}),
+            contentType: 'application/x-www-form-urlencoded',
+            dataType: "xml",
+            success: tkParser,
+            async: false,
+            error: invalidCredentials
+        })
+        if(validLogin){
+            //jQuery for course enrollments
+            $.ajax({
+                type: "GET",
+                url: "https://ws.miamioh.edu/enrollments?application=FSBMobileAppDownload&token=" + token,
+                dataType: "xml",
+                success: crsParser,
+                async: false
+            })
+            //jQuery for course locations (building name + room num)
+            for (var i = 0; i < courses.length; i++) {
+                $.ajax({
+                    type: "GET",
+                    url: "https://ws.miamioh.edu/courseSection/" + termCode + "/" + courses[i],
+                    dataType: "xml",
+                    success: rmParser,
+                    async: false
+                })
+            }
+            //Display the rooms
+            if(rooms.length > 0) document.getElementById("myClasses").innerHTML = "Courses you are taking in FSB:";
+            for(var i = 0; i < rooms.length; i++){
+                //The if check is only necessary if we only want to display courses in farmers
+                if(rooms[i].startsWith("Farmer School of Business")){
+                    document.getElementById("myClasses").innerHTML += "<li>" + rooms[i] + "</li>";
+                }
+            }
+            
+        }
+    });
+    //Gets the term code
+    //Param: xml - the xml file being parsed
+    function tcParser(xml) {
+        $(xml).find("termId").each(function () {
+            termCode = $(this).text();
+            //alert(termCode);
+        });
+    }
+    //Gets the token based on a successful login
+    //Param: xml - the xml file being parsed
+    function tkParser(xml) {
+        $(xml).find("token").each(function () {
+            token = $(this).text();
+            //alert(token);
+        })
+    }
+    //Gets all the courses a student is enrolled in
+    //Param: xml - the xml file being parsed
+    function crsParser(xml) {
+        $(xml).find("courseId").each(function () {
+            courses.push($(this).text());
+        })
+        //alert(courses);
+    }
+    //Gets all the rooms for the courses a student is taking
+    //Param: xml - the xml file being read
+    function rmParser(xml) {
+        var building = $(xml).find("building").get(0);
+        var room = $(xml).find("room").get(0);
+        building = building.childNodes[0].nodeValue;
+        room = room.childNodes[0].nodeValue;
+        rooms.push(building + " " + room);
+        console.log(rooms);
+    }
+    //Lets user know they entered bad data
+    function invalidCredentials(){
+        validLogin = false;
+        alert("Bad username/password");
+    }
+</script>
 </html>
