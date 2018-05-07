@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,41 +29,42 @@
     <script src="assets/js/printRoute.js"></script>
     <!--log in script-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="assets/js/drawRoute.js"></script>
 
     <!--css-->
     <style>
-    /* Remove the navbar&amp;#39;s default margin-bottom and rounded borders */ 
+    /* Remove the navbar&amp;#39;s default margin-bottom and rounded borders */
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
     }
-    
+
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 1400px;}
-    
+
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
       background-color: #f1f1f1;
       height: 100%;
     }
-    
+
     /* Set black background color, white text and some padding */
     footer {
       background-color: #555;
       color: white;
       padding: 15px;
     }
-    
+
     /* On small screens, set height to &amp;#39;auto&amp;#39; for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
         height: auto;
         padding: 15px;
       }
-      .row.content {height:auto;} 
+      .row.content {height:auto;}
     }
-  
+
 </style>
   </head>
   <body>
@@ -81,8 +83,8 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="https://www.miamioh.edu/" target="_blank">Miami Homepage</a></li>
               <li><a href="https://miamioh.edu/fsb/" target="_blank">FSB Homepage</a></li>
-              <li><a href="https://bannerweb.miamioh.edu/" target="_blank">BannerWeb</a></li> 
-              <li><a href="https://mymiami.miamioh.edu/" target="_blank">MyMiami</a></li> 
+              <li><a href="https://bannerweb.miamioh.edu/" target="_blank">BannerWeb</a></li>
+              <li><a href="https://mymiami.miamioh.edu/" target="_blank">MyMiami</a></li>
             </ul>
             <!--
             <ul class="nav navbar-nav navbar-right">
@@ -123,18 +125,16 @@
         </div>
         <!--end left section-->
         <!-- main section-->
-        <div class="col-sm-8 text-center">
-          
-     
+        <div id="map" class="col-sm-8 text-center">
           <!--form-->
-          
+
           <!--form-->
           <br/>
           <!--search by room-->
           <!--
           <form class="form-inline" action="">
             <div class="form-group">
-            <label for="search">Search By Room:</label> 
+            <label for="search">Search By Room:</label>
             <input type="text" class="form-control" id="search" placeholder="Enter room number..." name="search" /></div>
           </form>
         -->
@@ -142,16 +142,19 @@
 
           <!--map-->
           <!--button to switch floors-->
-          <div>
-          
-          <img id="myImage" src="assets/images/fsb1.png" style="height:auto; width:90%;"><br/>
-          <br/>
-          <button class="btn btn-danger btn-xs" onclick="document.getElementById('myImage').src='assets/images/fsb1.png'">Floor 1</button>
-          <button class ="btn btn-danger btn-xs" onclick="document.getElementById('myImage').src='assets/images/fsb2.png'">Floor 2</button>
+          <div class="container-fluid text-center">
+			  <!-- <div id="mapAndRoute" style="background-color:red">
+				  <div id="map" style="position:absolute;top:0;left:0;">
+
+			  	  </div>
+				  <div id="route" style="position:absolute;top:0;left:0;">
+				  </div>
+			  <div>
+			  <br/> -->
+	          <!-- <button class="btn btn-danger btn-xs" onclick="document.getElementById('myImage').src='assets/images/fsb1.png'">Floor 1</button>
+	          <button class ="btn btn-danger btn-xs" onclick="document.getElementById('myImage').src='assets/images/fsb2.png'">Floor 2</button> -->
           </div>
 
-
- 
           <!--end map-->
           <br />
           <br />
@@ -171,12 +174,12 @@
           <p id="myClasses">
               Login to see courses!
           </p>
-            <br/> 
+            <br/>
         </div>
           <!--end right section-->
       </div>
     </div>
-  
+
     <footer class="container-fluid text-center">
       <p>Developed by ISA students &copy;	2018 for support of the Farmer School of </p>
     </footer>
@@ -241,7 +244,7 @@
                     document.getElementById("myClasses").innerHTML += "<li>" + rooms[i] + "</li>";
                 }
             }
-            
+
         }
     });
     //Gets the term code
