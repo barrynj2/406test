@@ -30,6 +30,7 @@
     <!--log in script-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="assets/js/drawRoute.js"></script>
+  <script type="text/javascript" src="assets/js/getRoute.js"></script>
 
     <!--css-->
     <style>
@@ -103,25 +104,25 @@
           <h5> Directions: </h5>
             <form><p> Starting Location: <i class="fa fa-map-marker" style="font-size:16px;color:green;"></i></p>
               <select name="start" id="start">
-                <option value="Taylor">Taylor Auditorium (Floor 1)</option>
-                <option value="Taylor2">Taylor Auditorium (Floor 2)</option>
-                <option value="Front" selected="selected">Front Door</option>
-                <option value="Side">Side Door</option>
+                <option value="1000">Taylor Auditorium (Floor 1)</option>
+                <option value="1000">Taylor Auditorium (Floor 2)</option>
+                <option value="1040" selected="selected">Front Door</option>
+                <option value="1039">Side Door</option>
               </select>
               <p>Ending Location: <i class="fa fa-map-marker" style="font-size:16px;color:#c3142d;"></i></p>
               <select name="end" id="end">
-                <option value="Taylor" selected="selected">Taylor Auditorium (Floor 1)</option>
-                <option value="Taylor2">Taylor Auditorium (Floor 2)</option>
-                <option value="Dividends">Dividends</option>
-                <option value="Front">Front Door</option>
-                <option value="Side">Side Door</option>
+                <option value="1000" selected="selected">Taylor Auditorium (Floor 1)</option>
+                <option value="1000">Taylor Auditorium (Floor 2)</option>
+                <option value="1026">Dividends</option>
+                <option value="1040">Front Door</option>
+                <option value="1039">Side Door</option>
               </select>
               <p> Accessibility : <i class="fa fa-wheelchair" style="font-size:16px;"></i></p>
               <select name="stairs" id="access">
                 <option value="stairs">Stairs</option>
                 <option value="elevator">Elevator</option>
               </select><br/>
-              <br/><input type="submit" value="   Go!   " onclick='getRoute(); return false;' /></form>
+              <br/><input id= "submit" type="submit" value="   Go!   " onclick='getRoute(); return false;' /></form>
         </div>
         <!--end left section-->
         <!-- main section-->
