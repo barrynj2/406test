@@ -2,6 +2,7 @@ var mapWidth;
 var mapHeight;
 var scaleFactor;
 var currentFloor = 1;
+var allRooms = [];
 
 const FLOOR_1_WIDTH = 613;
 const FLOOR_1_HEIGHT = 541;
@@ -18,8 +19,10 @@ var route = [
 	{floor:2,x:25,y:9}
 ];
 
-
-$(document).ready(loadMap);
+$(document).ready(function(){
+	getRooms();
+	loadMap();
+});
 $(window).resize(loadMap);
 
 function loadMap() {
@@ -117,4 +120,36 @@ function loadRoute() {
 	lines += start;
 	lines += end;
 	return lines;
+}
+
+function getRooms() {
+	let url = 'http://10.36.0.144:3000/rooms';
+	$.ajax(url,{
+		method: 'GET',
+		dataType: 'json',
+		success: function(data) {
+			console.log('success');
+			console.log(data);
+			allRooms = data;
+			allRooms.sort((a,b)=>a.roomName.localeCompare(b.roomName));
+			fillRooms();
+		},
+		error: function(jqhxr,text,err) {
+			console.log(text);
+			console.log(err);
+		}
+	})
+}
+function fillRooms() {
+	console.log('filling rooms');
+	for(let i=0;i<allRooms.length;i++) {
+		let room = `
+			<option value="${allRooms[i].roomNumber}">
+				${allRooms[i].roomName}
+			</option>
+		`;
+		console.log(room);
+		$('#start').append(room);
+		$('#end').append(room);
+	}
 }
